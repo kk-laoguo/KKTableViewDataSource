@@ -17,9 +17,10 @@ Pod::Spec.new do |spec|
 
   spec.name         = "KKTableViewDataSource"
   spec.version      = "0.0.1"
+  spec.platform     = :ios, "8.0"
   spec.summary      = "解耦`tableView`的数据源方法和代理方法"
   spec.license      = { :type => "MIT", :file => "LICENSE" }
-
+  spec.requires_arc = true
 
   spec.description  = <<-DESC
   解耦`tableView`的数据源方法和代理方法，不再需要每次都设置代理和数据源方法，`KKTableViewDataSource`可以帮助我们管理`tableView`的代理方法、数据源方法。
@@ -29,11 +30,14 @@ Pod::Spec.new do |spec|
 
   spec.author       = { "zainguo" => "572249347@qq.com" }
 
+
   spec.source       = { :git => "https://github.com/kk-laoguo/KKTableViewDataSource.git", :tag => "#{spec.version}" }
 
   spec.frameworks   = 'Foundation', 'UIKit'
 
   spec.source_files  = "KKTableViewDataSource", "KKTableViewDataSource/**/*.{h,m}"
+
+  spec.public_header_files = "KKTableViewDataSource/**/*.h"
   # spec.exclude_files = "Classes/Exclude"
 
 
