@@ -14,7 +14,7 @@
 
 
 ```
- self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.tableView];
     
     self.dataSource = [[KKTableViewDataSource alloc] initWithTableView:self.tableView
@@ -32,20 +32,20 @@
                      @"不使用KKDataSourceModel来设置数据源",
                      @"不使用KKDataSourceModel来设置数据源"];
     
+    // 设置区头视图
     self.dataSource.sectionHeader = ^UIView *(UITableView *tableView, NSInteger section) {
         SectionHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"SectionHeaderView"];
         header.textLabel.text = @"SectionHeaderView";
         return header;
 
     };
-    // 设置区头视图
+    // 设置区尾视图
     self.dataSource.sectionFooter = ^UIView *(UITableView *tableView, NSInteger section) {
         SectionFooterView *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"SectionFooterView"];
         footer.textLabel.text = @"SectionFooterView";
 
         return footer;
     };
-    // 设置区尾视图
     __weak typeof(self) weakSelf = self;
     self.dataSource.didSelectBlock = ^(id data, NSIndexPath *indexPath) {
         [weakSelf.navigationController pushViewController:[NSClassFromString(@"NextViewController") new] animated:YES];
@@ -61,7 +61,7 @@
 > 使用`KKTableViewDataSource`来设置数据源
 
 ```
- self.dataSource = [[KKTableViewDataSource alloc] initWithTableView:self.tableView];
+    self.dataSource = [[KKTableViewDataSource alloc] initWithTableView:self.tableView];
     
     [self.dataSource kk_registerCellClass:@[@"KKNextTableViewCell", @"KKNextOtherTableViewCell"] sectionHeaderFooterViewClass:@[@"SectionHeaderView", @"SectionFooterView"]];
     
