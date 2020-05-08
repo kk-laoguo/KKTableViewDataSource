@@ -31,6 +31,8 @@ Pod::Spec.new do |spec|
 
   spec.source       = { :git => "https://github.com/kk-laoguo/KKTableViewDataSource.git", :tag => "#{spec.version}" }
 
+  spec.frameworks   = 'Foundation', 'UIKit'
+
   spec.source_files  = "KKTableViewDataSource", "KKTableViewDataSource/**/*.{h,m}"
   # spec.exclude_files = "Classes/Exclude"
 

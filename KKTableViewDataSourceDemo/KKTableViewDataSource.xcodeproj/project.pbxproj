@@ -202,11 +202,11 @@
 		74AEB67A24654FEC00EBF844 /* KKTableViewDataSource */ = {
 			isa = PBXGroup;
 			children = (
-				74AEB67B24654FEC00EBF844 /* KKDataSourceModel.h */,
-				74AEB67C24654FEC00EBF844 /* KKTableViewDataSource.m */,
 				74AEB67D24654FEC00EBF844 /* KKDataSourceHeader.h */,
+				74AEB67B24654FEC00EBF844 /* KKDataSourceModel.h */,
 				74AEB67E24654FEC00EBF844 /* KKDataSourceModel.m */,
 				74AEB67F24654FEC00EBF844 /* KKTableViewDataSource.h */,
+				74AEB67C24654FEC00EBF844 /* KKTableViewDataSource.m */,
 			);
 			name = KKTableViewDataSource;
 			path = ../../KKTableViewDataSource;
