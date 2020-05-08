@@ -8,7 +8,17 @@
 - 支持自定义行高、区头视图高度、区尾视图高度
 - 支持模型数据源
 
+### 安装
+#### - `CocoaPods`导入
+>  `pod 'KKTableViewDataSource'`
+
+#### - 手动导入
+>  将工程里`KKTableViewDataSource`文件夹直接拖到项目即可
+
+
 ### 使用
+
+-  导入头文件`#import "KKDataSourceHeader.h"`
 
 > 简单使用
 
