@@ -10,7 +10,8 @@
 
 ### 安装
 #### - `CocoaPods`导入
->  `pod 'KKTableViewDataSource'`
+
+>  `pod 'KKTableViewDataSource', '~> 0.0.1'`
 
 #### - 手动导入
 >  将工程里`KKTableViewDataSource`文件夹直接拖到项目即可
