@@ -11,7 +11,6 @@
 @implementation KKTableViewCell
 
 - (void)kk_configData:(id)data {
-    
     self.textLabel.text = data;
 }
 

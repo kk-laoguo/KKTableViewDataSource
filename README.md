@@ -23,6 +23,23 @@
 
 > 简单使用
 
+#### `Cell`内部实现
+
+- 遵循`KKDataSource`协议
+```
+@interface KKTableViewCell : UITableViewCell <KKDataSource>
+
+```
+- 实现协议方法填充数据
+```
+
+- (void)kk_configData:(id)data {
+    self.textLabel.text = data;
+}
+
+```
+
+#### `TableView`数据源设置
 
 ```
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
@@ -70,6 +87,28 @@
 
 
 > 使用`KKTableViewDataSource`来设置数据源
+
+#### `Cell`内部实现
+
+- 遵循`KKDataSource`协议
+```
+@interface KKNextOtherTableViewCell : UITableViewCell <KKDataSource>
+
+```
+- 实现协议方法
+```
+- (void)kk_configData:(id)data {
+    Person *p = data;
+    self.textLabel.text = p.name;
+    self.detailTextLabel.text = [NSString stringWithFormat:@"年龄: %zd", p.age];
+}
+
+```
+
+#### 区头区尾内部实现
+- 遵循`KKDataSource`协议
+- 实现`- (void)kk_configData:(id)data `协议方法来设置数据源
+
 
 ```
     self.dataSource = [[KKTableViewDataSource alloc] initWithTableView:self.tableView];

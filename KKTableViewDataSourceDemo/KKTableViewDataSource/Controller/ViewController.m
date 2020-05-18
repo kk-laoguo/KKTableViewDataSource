@@ -65,6 +65,16 @@
     self.dataSource.didSelectBlock = ^(id data, NSIndexPath *indexPath) {
         [weakSelf.navigationController pushViewController:[NSClassFromString(@"NextViewController") new] animated:YES];
     };
+    
+    self.dataSource.scrollViewDidScroll = ^(UIScrollView *scrollView) {
+        
+        if (scrollView.contentOffset.y <= -100) {
+            scrollView.contentOffset = CGPointMake(0, -100);
+        }
+        
+    };
+    
+    
     // 刷新数据源
     [self.dataSource kk_singleRefresh:arr];
     

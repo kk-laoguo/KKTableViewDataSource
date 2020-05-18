@@ -14,15 +14,18 @@
 #pragma mark - 不使用KKDataSourceModel来设置数据源
 
 typedef void(^DidSelectCellBlock)(id data, NSIndexPath *indexPath);
+typedef void(^ScrollViewDidScrollBlock)(UIScrollView *scrollView);
+
 typedef UIView *(^SectionHeaderViewBlock)(UITableView *tableView, NSInteger section);
 typedef UIView *(^SectionFooterViewBlock)(UITableView *tableView, NSInteger section);
+
 
 @interface KKTableViewDataSource : NSObject
 
 @property (nonatomic, copy) DidSelectCellBlock didSelectBlock;
 @property (nonatomic, copy) SectionHeaderViewBlock sectionHeader;
 @property (nonatomic, copy) SectionFooterViewBlock sectionFooter;
-
+@property (nonatomic, copy) ScrollViewDidScrollBlock scrollViewDidScroll;
 
 #pragma mark - identifier必须和注册的类名一致
 

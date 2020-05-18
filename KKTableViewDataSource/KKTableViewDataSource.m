@@ -231,6 +231,11 @@ UITableViewDataSource>
     }
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.scrollViewDidScroll) {
+        self.scrollViewDidScroll(scrollView);
+    }
+}
 
 
 @end
