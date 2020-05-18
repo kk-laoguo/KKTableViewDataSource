@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "KKTableViewDataSource"
-  spec.version      = "0.0.2"
+  spec.version      = "0.0.3"
   spec.platform     = :ios, "8.0"
   spec.summary      = "解耦`tableView`的数据源方法和代理方法"
   spec.license      = { :type => "MIT", :file => "LICENSE" }

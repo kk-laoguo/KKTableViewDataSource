@@ -12,6 +12,7 @@
 
 @optional
 - (void)kk_configData:(id)data;
+- (void)kk_configData:(id)data indexPath:(NSIndexPath *)indexPath;
 @end
 
 

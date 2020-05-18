@@ -29,7 +29,6 @@ UITableViewDataSource>
 // 数据源
 @property (nonatomic, strong) NSMutableArray *items;
 
-
 @end
 
 @implementation KKTableViewDataSource
@@ -65,7 +64,6 @@ UITableViewDataSource>
         self.footerHeight = footerHeight ? footerHeight : CGFLOAT_MIN;
     }
     return self;
-    
 }
 #pragma mark - Private Methods
 
@@ -134,12 +132,18 @@ UITableViewDataSource>
         if ([cell respondsToSelector:@selector(kk_configData:)]) {
             [(id<KKDataSource>)cell kk_configData:cellItem.data];
         }
+        if ([cell respondsToSelector:@selector(kk_configData:indexPath:)]) {
+            [(id<KKDataSource>)cell kk_configData:cellItem.data indexPath:indexPath];
+        }
         return cell;
     }
     // 单区
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier forIndexPath:indexPath];
     if ([cell respondsToSelector:@selector(kk_configData:)]) {
         [(id<KKDataSource>)cell kk_configData:self.items[indexPath.row]];
+    }
+    if ([cell respondsToSelector:@selector(kk_configData:indexPath:)]) {
+        [(id<KKDataSource>)cell kk_configData:self.items[indexPath.row] indexPath:indexPath];
     }
     return cell;
 
@@ -162,7 +166,6 @@ UITableViewDataSource>
     if (self.cellHeight) {
         return self.cellHeight;
     }
-    
     KKDataSourceModel *model = self.datas[indexPath.section];
     KKCellItem *item = model.datas[indexPath.row];
     return [item.cellHeight floatValue];
@@ -180,7 +183,6 @@ UITableViewDataSource>
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
-    
     if (self.items.count && self.footerHeight) {
         return self.footerHeight;
     }
@@ -188,7 +190,6 @@ UITableViewDataSource>
     KKSectionHeaderFooterItem *item = model.footerItem;
     return item ? [item.height floatValue] : CGFLOAT_MIN;
 }
-
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
@@ -204,6 +205,10 @@ UITableViewDataSource>
         UITableViewHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:item.identifier];
         if ([header respondsToSelector:@selector(kk_configData:)]) {
             [(id <KKDataSource>)header kk_configData:item.data];
+        }
+        if ([header respondsToSelector:@selector(kk_configData:indexPath:)]) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:section];
+            [(id<KKDataSource>)header kk_configData:item.data indexPath:indexPath];
         }
         return header;
     } else {
@@ -224,6 +229,10 @@ UITableViewDataSource>
         UITableViewHeaderFooterView *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:item.identifier];
         if ([footer respondsToSelector:@selector(kk_configData:)]) {
             [(id <KKDataSource>)footer kk_configData:item.data];
+        }
+        if ([footer respondsToSelector:@selector(kk_configData:indexPath:)]) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:section];
+            [(id<KKDataSource>)footer kk_configData:item.data indexPath:indexPath];
         }
         return footer;
     } else {
