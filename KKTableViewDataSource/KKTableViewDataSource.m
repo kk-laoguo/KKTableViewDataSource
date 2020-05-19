@@ -15,7 +15,7 @@
 UITableViewDataSource>
 
 @property (nonatomic, weak) UITableView *tableView;
-
+// 配合KKDataSourceModel设置数据源
 @property (nonatomic, strong) NSMutableArray<KKDataSourceModel *>*datas;
 
 #pragma mark - 不使用KKDataSourceModel来设置数据源
@@ -26,8 +26,11 @@ UITableViewDataSource>
 @property (nonatomic, assign) CGFloat footerHeight;
 // 重用标识符
 @property (nonatomic, copy) NSString *cellIdentifier;
-// 数据源
+// 单区数据源
 @property (nonatomic, strong) NSMutableArray *items;
+
+@property (nonatomic, copy) TableViewCellConfigure configureCell;
+
 
 @end
 
@@ -39,6 +42,18 @@ UITableViewDataSource>
         [self __setupTableView:tableView];
     }
     return self;
+}
+- (instancetype)initWithTableView:(UITableView *)tableView
+                   cellIdentifier:(NSString *)cellIdentifier
+                       cellHeight:(CGFloat)cellHeight
+                    configureCell:(TableViewCellConfigure)configureCell {
+    
+    KKTableViewDataSource *dataSource = [self initWithTableView:tableView
+                                                 cellIdentifier:cellIdentifier
+                                                     cellHeight:cellHeight];
+    _configureCell = [configureCell copy];
+    
+    return dataSource;
 }
 - (instancetype)initWithTableView:(UITableView *)tableView
                    cellIdentifier:(NSString *)cellIdentifier
@@ -65,6 +80,7 @@ UITableViewDataSource>
     }
     return self;
 }
+
 #pragma mark - Private Methods
 
 - (void)__setupTableView:(UITableView *)tableView {
@@ -125,7 +141,7 @@ UITableViewDataSource>
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (self.items.count == 0) {
+    if (self.items.count == 0 && self.datas.count) {
         KKDataSourceModel *model = self.datas[indexPath.section];
         KKCellItem *cellItem = model.datas[indexPath.row];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellItem.cellIdentifier forIndexPath:indexPath];
@@ -144,6 +160,9 @@ UITableViewDataSource>
     }
     if ([cell respondsToSelector:@selector(kk_configData:indexPath:)]) {
         [(id<KKDataSource>)cell kk_configData:self.items[indexPath.row] indexPath:indexPath];
+    }
+    if (self.configureCell) {
+        self.configureCell(cell, self.items[indexPath.row], indexPath);
     }
     return cell;
 

@@ -31,6 +31,17 @@
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.tableView];
     
+//
+//    self.dataSource = [[KKTableViewDataSource alloc] initWithTableView:self.tableView
+//                                                        cellIdentifier:@"UITableViewCell"
+//                                                            cellHeight:50
+//                                                         configureCell:^(UITableViewCell *cell, id item, NSIndexPath *indexPath) {
+//        cell.textLabel.text = item;
+//
+//    }];
+//
+//    [self.dataSource kk_registerCellClass:@[@"UITableViewCell"] sectionHeaderFooterViewClass:@[@"SectionFooterView", @"SectionHeaderView"]];
+
     self.dataSource = [[KKTableViewDataSource alloc] initWithTableView:self.tableView
                                                         cellIdentifier:@"KKTableViewCell"
                                                             cellHeight:50
@@ -45,13 +56,11 @@
                      @"不使用KKDataSourceModel来设置数据源",
                      @"不使用KKDataSourceModel来设置数据源",
                      @"不使用KKDataSourceModel来设置数据源"];
-    
     // 设置区头视图
     self.dataSource.sectionHeader = ^UIView *(UITableView *tableView, NSInteger section) {
         SectionHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"SectionHeaderView"];
         header.textLabel.text = @"SectionHeaderView";
         return header;
-
     };
     // 设置区尾视图
     self.dataSource.sectionFooter = ^UIView *(UITableView *tableView, NSInteger section) {
